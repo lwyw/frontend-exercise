@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>TradeGecko</title>
+  <title>Your page title here :)</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -19,42 +19,28 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="bower_components/skeleton/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/skeleton/css/skeleton.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="bower_components/skeleton/images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
-<body ng-app="tradeGeckoApp">
+<body>
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container" ng-controller="tradeGeckoCtrl">
-    <h1>{{header}}</h1>
+  <div class="container">
     <div class="row">
-      <form name="gitHubForm">
-        <label for="keywordInput">GitHub</label>
-        <input class="u-full-width" type="text" placeholder="keyword" id="keywordInput" ng-model="keyword" required>
-        <input class="button-primary" type="submit" value="{{searchButtonLabel}}" ng-click="searchGitHub()" ng-disabled="gitHubForm.$invalid || disableSearchButton">
-      </form>
+      <div class="one-half column" style="margin-top: 25%">
+        <h4>Basic Page</h4>
+        <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton documentation</a>.</p>
+      </div>
     </div>
-    <ol>
-     <li ng-repeat="repo in repos"><a style="cursor:pointer" ng-click="showRepo($index)">{{repo.owner + '/' + repo.name}}</a>
-        <ul ng-show="repo.show">
-          <li>language: {{repo.language}}</li>
-          <li>followers: {{repo.followers}}</li>
-          <li><a href="{{repo.url}}" target="_blank">{{repo.url}}</a></li>
-          <li>description: {{repo.description}}</li>
-        </ul>
-      </li>
-    </ol>
   </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="bower_components/angular/angular.min.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>

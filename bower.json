@@ -1,0 +1,20 @@
+{
+  "name": "frontend-exercise",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lwyw/frontend-exercise",
+  "authors": [
+    "weeyounglim@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "skeleton": "~2.0.4",
+    "angular": "~1.3.15"
+  }
+}

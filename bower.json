@@ -1,11 +1,11 @@
 {
   "name": "frontend-exercise",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/lwyw/frontend-exercise",
   "authors": [
     "weeyounglim@gmail.com"
   ],
-  "license": "MIT",
+  "license": "",
   "ignore": [
     "**/.*",
     "node_modules",

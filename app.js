@@ -3,11 +3,13 @@
 var app = angular.module("tradeGeckoApp", []);
 
 app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
+
   function resetButton() {
     $scope.searchButtonLabel = "search";
     $scope.disableSearchButton = false;
   }
 
+  //submit api request to github
   $scope.searchGitHub = function () {
     //change search button label
     $scope.searchButtonLabel = "searching...";
@@ -29,6 +31,7 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
       });
   };
 
+  //toggle showing repo details
   $scope.showRepo = function (index) {
     $scope.repos[index].show = !$scope.repos[index].show;
   };
@@ -36,4 +39,5 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
   //initialize
   $scope.header = "TradeGecko";
   resetButton();
+
 }]);

@@ -33,13 +33,13 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" ng-controller="tradeGeckoCtrl">
     <h1>{{header}}</h1>
-    <div class="row">
-      <form name="gitHubForm">
-        <label for="keywordInput">GitHub</label>
-        <input class="u-full-width" type="text" placeholder="keyword" id="keywordInput" ng-model="keyword" required>
-        <input class="button-primary" type="submit" value="{{searchButtonLabel}}" ng-click="searchGitHub()" ng-disabled="gitHubForm.$invalid || disableSearchButton">
-      </form>
-    </div>
+    <!--search form-->
+    <form name="gitHubForm">
+      <label for="keywordInput">GitHub</label>
+      <input class="u-full-width" type="text" placeholder="keyword" id="keywordInput" ng-model="keyword" required>
+      <input class="button-primary" type="submit" value="{{searchButtonLabel}}" ng-click="searchGitHub()" ng-disabled="gitHubForm.$invalid || disableSearchButton">
+    </form>
+    <!--display search result-->
     <ol>
      <li ng-repeat="repo in repos"><a style="cursor:pointer" ng-click="showRepo($index)">{{repo.owner + '/' + repo.name}}</a>
         <ul ng-show="repo.show">

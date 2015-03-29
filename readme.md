@@ -1,19 +1,13 @@
-# Overview #
+## Git History ##
 
-Write a single page JavaScript application that allows one to search Github.com for repos by keyword.
+I started out lookng for a template that is an alternative to bootstrap and zurb foundation because I have used them before. This is where I found <a href="http://getskeleton.com/" target="_blank">Skeleton</a>, a really simple temple with roughly 200 lines of code. I like the KISS (Keep it simple, stupid) and DRY (Don't repeat yourself) principles and I do my best to adhere to them. In this case, Skeleton is perfect since it is such a simple template.
 
-There is no one way to complete this exercise as long as the minimum requirements are met.
 
-## Requirements ##
+I used <a href="https://angularjs.org/" target="_blank">Angular</a> for the frontend becaue I am excited about the new Angular 2.0 that is coming up. Although the new Angular 2.0 is suppoed to be radically different and it uses ECMAScript 6, I still enjoying writing frontend applications in Angular. After all the hours put into learning how to write custom directives and the concept of transclusion, it is nice to put those skills in use.
 
-1. Write your javascript code in app.js
-2. The results should be shown in "owner/name" format
-3. When a result is clicked, show the repo's 'language', 'followers', 'url', and 'description'
-4. Solution does not need to support older browsers, but should work in the latest version of Chrome
-5. Feel free to use any libraries or tools you like.
+The exercise is really free-form which I enjoyed. Intially, I built a simple Angular web application that performs an API call to get a list of GitHub repositories and hide the details (as required by this exercise) until the "owner/name" link was clicked on. The Skeleton template did a wonderful job of presenting the form and information from GitHub. So I thought to myself, what more can I do with this page.
 
-Your app (and code) should be performant and intuitive. Not a lot of effort is required for the UI but it should be reasonably pleasant to look at.
+Upon perusing the API documentation, the maximum number of repositories from a search is 1000 and each page displays a 100 repositories. A while ago, I wrote an Angular directives that calls a function when the page in the browser in scroll all the way down the bottom, I thought why not use it. Like other contemporary web applications, I made this applcation continually expand the list of search result by scrolling to the bottom.
 
-Your process is just as interesting as the final product, so please do leave a basic git history
-
-Any questions, please ask.
+## Setup ##
+Please serve the files in its current folder structure. Bower is used to download and manage the JavaScript libraries, so feel free to re-download them using "bower install".

@@ -37,10 +37,10 @@
     <form name="gitHubForm">
       <label for="keywordInput">GitHub</label>
       <input class="u-full-width" type="text" placeholder="keyword" id="keywordInput" ng-model="keyword" required>
-      <input class="button-primary" type="submit" value="{{searchButtonLabel}}" ng-click="searchGitHub()" ng-disabled="gitHubForm.$invalid || disableSearchButton">
+      <input class="button-primary" type="submit" value="{{searchButtonLabel}}" ng-click="searchGitHub(true)" ng-disabled="gitHubForm.$invalid || disableSearchButton">
     </form>
     <!--display search result-->
-    <ol>
+    <ol scroll-end-function="searchGitHub()">
      <li ng-repeat="repo in repos"><a style="cursor:pointer" ng-click="showRepo($index)">{{repo.owner + '/' + repo.name}}</a>
         <ul ng-show="repo.show">
           <li>language: {{repo.language}}</li>
@@ -50,10 +50,12 @@
         </ul>
       </li>
     </ol>
+    <p ng-show="showLoadingMessage">loading ...</p>
   </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="app.js"></script>
 </body>

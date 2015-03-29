@@ -61,6 +61,12 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
       });
   }
   
+  /**
+   * Handle data from API call
+   * @param {Object}  err       error object from API call
+   * @param {Object}  data      respositories from API call
+   * @param {Boolean} newSearch true if API call was based on a new search i.e. using the search button
+   */
   function dataHandler(err, data, newSearch) {
     //check if error is due to end of result
     if (err) {

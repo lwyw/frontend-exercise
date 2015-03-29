@@ -83,6 +83,7 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
         //if error check if error is due to end of result
         if (err) {
           if (err.message === "Only the first 1000 search results are available") {
+            //set end result to true to prevent further api call unless it is a new search
             endOfResult = true;
           } else {
             //log error in console
@@ -129,7 +130,7 @@ app.directive('scrollEndFunction', ['$document', '$window', function ($document,
   }
 
   return {
-    scope: {scrollEndFunction: '&'},
+    scope: { scrollEndFunction: '&' },
     link: link
   };
 }]);

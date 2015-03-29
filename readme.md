@@ -7,7 +7,7 @@ I used <a href="https://angularjs.org/" target="_blank">Angular</a> for the fron
 
 The exercise is really free-form which I enjoyed. Intially, I built a simple Angular web application that performs an API call to get a list of GitHub repositories and hide the details (as required by this exercise) until the "owner/name" link was clicked on. The Skeleton template did a wonderful job of presenting the form and information from GitHub. So I thought to myself, what more can I do with this page.
 
-Upon perusing the API documentation, the maximum number of repositories from a search is 1000 and each page displays a 100 repositories. A while ago, I wrote an Angular directives that calls a function when the page in the browser in scroll all the way down the bottom, I thought why not use it. Like other contemporary web applications, I made this applcation continually expand the list of search result by scrolling to the bottom.
+Upon perusing the API documentation, the maximum number of repositories from a search is 1000 and each page displays a 100 repositories. A while ago, I wrote an Angular directives that calls a function when the page in the browser in scroll all the way down the bottom, I thought why not use it. Like other contemporary web applications, I made this applcation continually expand the list of search result by scrolling to the bottom, until the end of the search result, which is always the 1000th as determined by GitHub.
 
 ## Setup ##
 Please serve the files in its current folder structure. Bower is used to download and manage the JavaScript libraries, so feel free to re-download them using "bower install".

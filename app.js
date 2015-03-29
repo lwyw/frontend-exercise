@@ -33,6 +33,8 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
     startPage = 1;
     endOfResult = false;
     currentKeyword = $scope.keyword;
+    $scope.showErrorMessage = false;
+    delete $scope.errorMessage;
   }
 
   /**
@@ -75,7 +77,11 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
         endOfResult = true;
       } else {
         //log error in console
-        console.log("application error: ", err);
+        console.log("Error: ", err);
+        
+        //show error message in html
+        $scope.showErrorMessage = true;
+        $scope.errorMessage = "Error: " + err.message;
       }
       
     } else if (data && data.length === 0) {

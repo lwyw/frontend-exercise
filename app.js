@@ -65,16 +65,15 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
     //if search is new, reset start page to 1
     if (newSearch) { resetSearch(); }
 
-    //if the end of result is reach, do not trigger more API call
+    //if the end of result is reach, do not trigger API call
     if (endOfResult) { return; }
-
-    //disable search button, update button label and show loading message
-    setToNonSearchableState();
 
     //fire search API call and update results only if the previous has completed
     if (!stillSearching) {
       //set to searching state
       stillSearching = true;
+      //disable search button, update button label and show loading message
+      setToNonSearchableState();
 
       updateResults(newSearch, function (err, data) {
         //set to no longer searching state
@@ -103,8 +102,8 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
   };
 
   //toggle showing repo details
-  $scope.showRepo = function (index) {
-    $scope.repos[index].show = !$scope.repos[index].show;
+  $scope.toggleRepoDetails = function (index) {
+    $scope.repos[index].showDetails = !$scope.repos[index].showDetails;
   };
 
   //initialize variables
@@ -114,7 +113,7 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
 
 }]);
 
-//directive to trigger to search for more results
+//directive to call function when scroll to end of page
 app.directive('scrollEndFunction', ['$document', '$window', function ($document, $window) {
 
   function link(scope) {

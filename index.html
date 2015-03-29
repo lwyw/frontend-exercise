@@ -41,8 +41,8 @@
     </form>
     <!--display search result-->
     <ol scroll-end-function="searchGitHub()">
-     <li ng-repeat="repo in repos"><a style="cursor:pointer" ng-click="showRepo($index)">{{repo.owner + '/' + repo.name}}</a>
-        <ul ng-show="repo.show">
+     <li ng-repeat="repo in repos"><a style="cursor:pointer" ng-click="toggleRepoDetails($index)">{{repo.owner + '/' + repo.name}}</a>
+        <ul ng-show="repo.showDetails">
           <li>language: {{repo.language}}</li>
           <li>followers: {{repo.followers}}</li>
           <li><a href="{{repo.url}}" target="_blank">{{repo.url}}</a></li>

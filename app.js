@@ -5,8 +5,8 @@ var app = angular.module("tradeGeckoApp", []);
 //controller to search to and display from GitHub
 app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
 
-  //keep track of end of results and if the app is still waitiing for a response
-  var endOfResult = false, stillSearching = false;
+  //initialize variables
+  var endOfResult = false, stillSearching = false, currentKeyword = "", startPage = 1;
 
   /**
    * Enable search button, update button label and clear loading message
@@ -30,8 +30,9 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
    * Reinitialize values for new search
    */
   function resetSearch() {
-    $scope.startPage = 1;
+    startPage = 1;
     endOfResult = false;
+    currentKeyword = $scope.keyword;
   }
 
   /**
@@ -51,13 +52,36 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
    */
   function updateResults(newSearch, callback) {
     //github api request
-    $http.get("https://api.github.com/legacy/repos/search/" + encodeURIComponent($scope.keyword) + "?start_page=" + $scope.startPage)
+    $http.get("https://api.github.com/legacy/repos/search/" + encodeURIComponent(currentKeyword) + "?start_page=" + startPage)
       .success(function (data) {
         callback(null, data.repositories);
       })
       .error(function (err) {
         callback(err);
       });
+  }
+  
+  function dataHandler(err, data, newSearch) {
+    //check if error is due to end of result
+    if (err) {
+      if (err.message === "Only the first 1000 search results are available") {
+        //set end of result to true to prevent further api call since there are no more results
+        endOfResult = true;
+      } else {
+        //log error in console
+        console.log("application error: ", err);
+      }
+      
+    } else if (data && data.length === 0) {
+      //set end of result to true to prevent further api call since there are no more results
+      endOfResult = true;
+      
+    } else {
+      //append new results
+      appendResults(data, newSearch);
+      //update start page
+      startPage += 1;
+    }
   }
 
   //submit api request to github and update results
@@ -69,7 +93,7 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
     if (endOfResult) { return; }
 
     //fire search API call and update results only if the previous has completed
-    if (!stillSearching) {
+    if (!stillSearching && currentKeyword !== "") {
       //set to searching state
       stillSearching = true;
       //disable search button, update button label and show loading message
@@ -78,22 +102,9 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
       updateResults(newSearch, function (err, data) {
         //set to no longer searching state
         stillSearching = false;
-
-        //if error check if error is due to end of result
-        if (err) {
-          if (err.message === "Only the first 1000 search results are available") {
-            //set end result to true to prevent further api call unless it is a new search
-            endOfResult = true;
-          } else {
-            //log error in console
-            console.log("application error: ", err);
-          }
-        } else {
-          //append new results
-          appendResults(data, newSearch);
-          //update start page
-          $scope.startPage += 1;
-        }
+        
+        //update displayed result
+        dataHandler(err, data, newSearch);
 
         //enable search button, update button label and clear loading message
         setToSearchableState();
@@ -106,8 +117,7 @@ app.controller("tradeGeckoCtrl", ["$scope", "$http", function ($scope, $http) {
     $scope.repos[index].showDetails = !$scope.repos[index].showDetails;
   };
 
-  //initialize variables
-  $scope.startPage = 1;
+  //initialize scope
   $scope.header = "TradeGecko";
   setToSearchableState();
 
